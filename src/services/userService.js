@@ -19,12 +19,7 @@ async function createUser(username, password, role) {
 }
 
 async function userExists(username) {
-  const existingUser = await User.findUserByUsername(username);
-  if (existingUser) {
-    return true;
-  } else {
-    return false;
-  }
+  return await User.findUserByUsername(username);
 }
 
 async function deleteUser(username) {

@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const { getUsernameFromToken } = require("../utils/jwtUtils");
+const { isTokenBlacklisted } = require("./blacklistMiddleware");
 
 // Middleware to verify JWT token
 const verifyToken = async (req, res, next) => {
@@ -10,6 +11,10 @@ const verifyToken = async (req, res, next) => {
   // Check if token is provided
   if (!token) {
     return res.status(401).json({ message: "No token provided" });
+  }
+
+  if(isTokenBlacklisted(token)) {
+    return res.status(401).json({ message: "Session not found" });
   }
 
   const existingUser = await User.findUserByUsername(

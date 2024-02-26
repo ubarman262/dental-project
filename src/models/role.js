@@ -1,8 +1,6 @@
-// models/role.js
+const { getPrismaInstance } = require("../clients/prisma");
 
-const { PrismaClient } = require("@prisma/client");
-
-const prisma = new PrismaClient();
+const prisma = getPrismaInstance();
 
 // Define the User model
 const Role = {
