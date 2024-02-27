@@ -1,4 +1,4 @@
-const { store } = require("../clients/r2.storage");
+const { store } = require("../clients/storage");
 const { filterBucketListData } = require("../utils/pathUtils");
 
 // Function to get a list of buckets

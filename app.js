@@ -8,7 +8,6 @@ const dotenv = require("dotenv");
 const path = require("path");
 const xss = require("./src/middleware/xssMiddleware");
 const authRoutes = require("./src/routes");
-const { initializeStorage } = require("./src/clients/r2.storage");
 
 dotenv.config();
 
