@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "Patient" ALTER COLUMN "date_of_birth" SET DEFAULT CURRENT_TIMESTAMP,
-ALTER COLUMN "date_of_birth" SET DATA TYPE DATE;
