@@ -12,7 +12,7 @@ const Patient = {
           last_name: data.last_name,
           email: data.email,
           phone_number: data.phone_number,
-          date_of_birth: new Date(data.date_of_birth),
+          age: data.age,
           // other relevant patient details
         },
       });
@@ -59,7 +59,7 @@ const Patient = {
           last_name: data.last_name,
           email: data.email,
           phone_number: data.phone_number,
-          date_of_birth: new Date(data.date_of_birth),
+          age: data.age,
           // other relevant patient details
         },
       });

@@ -5,14 +5,14 @@ async function createPatient({
   last_name,
   email,
   phone_number,
-  date_of_birth,
+  age,
 }) {
   const newPatient = await Patient.createPatient({
     first_name,
     last_name,
     email,
     phone_number,
-    date_of_birth,
+    age,
   });
   return newPatient;
 }

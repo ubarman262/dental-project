@@ -4,7 +4,11 @@ let prismaInstance;
 
 function getPrismaInstance() {
   if (!prismaInstance) {
-    prismaInstance = new PrismaClient();
+    prismaInstance = new PrismaClient(
+    //   {
+    //   log: ['query'],
+    // }
+    );
   }
   return prismaInstance;
 }

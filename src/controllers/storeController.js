@@ -64,12 +64,10 @@ const download = async (req, res) => {
       object_key
     );
 
-    res.setHeader("Content-Disposition", `attachment; filename="${object_key}"`);
+    res.setHeader("Content-Disposition", `attachment; filename="${object_key.split('/')[1]}"`);
     res.setHeader("Content-Type", "application/octet-stream");
 
     fileStream.pipe(res);
-    // res.json({ message: "File", result });
-    // res.sendFile(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });

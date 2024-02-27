@@ -1,11 +1,8 @@
 const patientService = require("../services/patientService");
-const {
-  addObjectToBucketWithSubdirectory,
-} = require("../services/storeService");
 
 const createPatient = async (req, res) => {
   try {
-    const { first_name, last_name, email, phone_number, date_of_birth } =
+    const { first_name, last_name, email, phone_number, age } =
       req.body;
 
     if (await patientService.patientExists(phone_number)) {
@@ -17,7 +14,7 @@ const createPatient = async (req, res) => {
       last_name,
       email,
       phone_number,
-      date_of_birth,
+      age,
     });
 
     res.json({
@@ -27,7 +24,7 @@ const createPatient = async (req, res) => {
         last_name: newPatient.last_name,
         email: newPatient.email,
         phone_number: newPatient.phone_number,
-        date_of_birth: newPatient.date_of_birth,
+        age: newPatient.age,
       },
     });
   } catch (error) {

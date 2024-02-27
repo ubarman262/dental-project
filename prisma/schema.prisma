@@ -16,16 +16,16 @@ datasource db {
 // schema.prisma
 
 model Patient {
-  patient_id    String        @id @default(uuid())
-  first_name    String
-  last_name     String
-  email         String?
-  phone_number  String
-  date_of_birth DateTime      @default(now()) @db.Date // Specify the data type as date
-  created_date  DateTime      @default(now()) @updatedAt
+  patient_id   String        @id @default(uuid())
+  first_name   String
+  last_name    String
+  email        String?
+  phone_number String
+  age          Int
+  created_date DateTime      @default(now()) @updatedAt
   // ...other relevant patient details
-  Appointments  Appointment[]
-  Buckets       Bucket[]
+  Appointments Appointment[]
+  Buckets      Bucket[]
 }
 
 model Dentist {
@@ -42,14 +42,13 @@ model Dentist {
 model Appointment {
   appointment_id   String   @id @default(uuid())
   appointment_date DateTime
-  appointment_time String
   status           String
   // ...other appointment details
   patient_id       String
-  dentist_id       String
-  Patient          Patient  @relation(fields: [patient_id], references: [patient_id])
-  Dentist          Dentist  @relation(fields: [dentist_id], references: [dentist_id])
-}
+  dentist_id       String?
+  patient          Patient  @relation(fields: [patient_id], references: [patient_id])
+  dentist          Dentist?  @relation(fields: [dentist_id], references: [dentist_id])
+} 
 
 model Bucket {
   id         String  @id @default(uuid())
