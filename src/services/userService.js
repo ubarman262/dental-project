@@ -12,7 +12,7 @@ async function createUser(username, password, role) {
   const newUser = await User.createUser({
     username,
     password: hashedPassword,
-    roleId: roleObj.id,
+    role_id: roleObj.role_id,
   });
 
   return newUser;

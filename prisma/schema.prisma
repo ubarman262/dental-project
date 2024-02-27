@@ -25,7 +25,6 @@ model Patient {
   created_date DateTime      @default(now()) @updatedAt
   // ...other relevant patient details
   Appointments Appointment[]
-  Buckets      Bucket[]
 }
 
 model Dentist {
@@ -47,26 +46,26 @@ model Appointment {
   patient_id       String
   dentist_id       String?
   patient          Patient  @relation(fields: [patient_id], references: [patient_id])
-  dentist          Dentist?  @relation(fields: [dentist_id], references: [dentist_id])
-} 
-
-model Bucket {
-  id         String  @id @default(uuid())
-  uri        String
-  patient    Patient @relation(fields: [patient_id], references: [patient_id])
-  patient_id String
+  dentist          Dentist? @relation(fields: [dentist_id], references: [dentist_id])
 }
 
+// model Bucket {
+//   id         String  @id @default(uuid())
+//   uri        String
+//   patient    Patient @relation(fields: [patient_id], references: [patient_id])
+//   patient_id String
+// }
+
 model User {
-  id       String  @id @default(uuid())
+  id  String  @id @default(uuid())
   username String  @unique
   password String
-  role     Role?   @relation(fields: [roleId], references: [id])
-  roleId   String?
+  role     Role?   @relation(fields: [role_id], references: [role_id])
+  role_id  String?
 }
 
 model Role {
-  id    String @id @default(uuid())
-  role  String @unique
-  users User[]
+  role_id String @id @default(uuid())
+  role    String @unique
+  users   User[]
 }

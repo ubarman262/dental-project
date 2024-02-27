@@ -13,7 +13,7 @@ const verifyToken = async (req, res, next) => {
     return res.status(401).json({ message: "No token provided" });
   }
 
-  if(isTokenBlacklisted(token)) {
+  if (isTokenBlacklisted(token)) {
     return res.status(401).json({ message: "Session not found" });
   }
 
@@ -39,7 +39,7 @@ const verifyToken = async (req, res, next) => {
   });
 };
 
-function checkUserRole(role) {
+const checkUserRole = (role) => {
   return (req, res, next) => {
     const { user } = req;
     if (user && user.role === role) {
@@ -48,6 +48,6 @@ function checkUserRole(role) {
       res.status(403).json({ message: "Access forbidden" });
     }
   };
-}
+};
 
 module.exports = { verifyToken, checkUserRole };

@@ -11,7 +11,7 @@ const User = {
         data: {
           username: data.username,
           password: data.password,
-          role: { connect: { id: data.roleId } }, // Connect the user to the specified role
+          role: { connect: { role_id: data.role_id } }, // Connect the user to the specified role
         },
         include: {
           role: true, // Include the associated role in the returned user object
