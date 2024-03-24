@@ -1,5 +1,7 @@
 const { store } = require("../clients/storage");
 const { filterBucketListData } = require("../utils/pathUtils");
+const { stripJPG } = require("exif-cleaner");
+const fs = require("fs");
 
 // Function to get a list of buckets
 async function getBucketList() {
@@ -15,7 +17,6 @@ async function getBucketList() {
 async function getBucketContent(bucketName) {
   try {
     const data = await store.listObjects({ Bucket: bucketName }).promise();
-    // return filterBucketListData(data);
     return filterBucketListData(data).sort((a, b) => {
       return new Date(b.lastModified) - new Date(a.lastModified);
     });
@@ -105,6 +106,13 @@ async function deleteObjectsFromBucket(bucketName, keys) {
   }
 }
 
+function removeEXIF(inputBuffer) {
+  // Strip the Exif metadata from the input buffer
+  const outputBuffer = stripJPG(inputBuffer);
+
+  return outputBuffer;
+}
+
 module.exports = {
   getBucketList,
   getBucketContent,
@@ -113,4 +121,5 @@ module.exports = {
   addMultipleObjectsToBucket,
   deleteObjectsFromBucket,
   addObjectToBucketWithSubdirectory,
+  removeEXIF,
 };

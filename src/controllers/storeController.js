@@ -1,3 +1,5 @@
+const { customAlphabet } = require("nanoid");
+const path = require("path");
 const storeService = require("../services/storeService");
 
 const uploadSingle = async (req, res) => {
@@ -14,13 +16,15 @@ const uploadSingle = async (req, res) => {
 
   // Extract the file data from the request
   const { originalname, buffer } = req.file;
+  const nanoid = customAlphabet("1234567890abcdef", 6);
+  const { name, ext } = path.parse(originalname);
 
   try {
     // Upload the file to the S3 bucket
     const result = await storeService.addObjectToBucketWithSubdirectory(
       process.env.BASE_BUCKET,
       patient_id,
-      originalname, // Use the original filename as the object key
+      `${name}-${nanoid()}${ext}`, // Use the original filename as the object key
       buffer // Use the file buffer as the object content
     );
 
@@ -64,7 +68,10 @@ const download = async (req, res) => {
       object_key
     );
 
-    res.setHeader("Content-Disposition", `attachment; filename="${object_key.split('/')[1]}"`);
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename="${object_key.split("/")[1]}"`
+    );
     res.setHeader("Content-Type", "application/octet-stream");
 
     fileStream.pipe(res);
