@@ -1,0 +1,53 @@
+.login-bg-container {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://images.unsplash.com/photo-1520531158340-44015069e78e?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJsYWNrJTIwYW5kJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fHww");
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.login-top-circle {
+  position: absolute;
+  top: -150px;
+  left: 10vw;
+  z-index: -1;
+}
+
+.login-bottom-circle {
+  position: absolute;
+  bottom: 10px;
+  left: 55vw;
+  z-index: -1;
+}
+
+.login-form-container {
+  text-align: center;
+  padding: 80px 80px 120px 80px;
+  border: 1px solid #1111;
+  background-color: #f0f0f0;
+  margin: auto;
+  margin-top: 120px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.form-input-error {
+  font-size: 12px;
+  color: #111111;
+  text-align: left;
+}
+
+@media only screen and (max-width: 600px) {
+  .login-form-container {
+    padding: 80px 40px 120px 40px;
+  }
+}

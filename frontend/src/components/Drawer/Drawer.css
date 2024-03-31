@@ -1,0 +1,36 @@
+.MuiDrawer-paper {
+  background-color: #f0f0f0 !important;
+  color: #030303 !important;
+}
+
+.MuiListItemButton-root {
+  border: 1px solid;
+  border-color: transparent;
+}
+
+.MuiListItemButton-root:hover {
+  background-color: transparent;
+  border: 1px solid;
+  border-color: #111111;
+  border-radius: 0px;
+  transition: border 1s ease-out;
+}
+
+.floating-button {
+  bottom: 10px;
+  left: 10px;
+  position: absolute;
+  z-index: 9999;
+  background-color: #030303;
+  display: none;
+}
+
+.floating-button:hover {
+  background-color: #030303;
+}
+
+@media only screen and (max-width: 600px) {
+  .floating-button {
+    display: inline-flex;
+  }
+}

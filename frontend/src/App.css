@@ -1,0 +1,29 @@
+.ux-button {
+  padding: 10px;
+  border: 1px solid;
+  border-color: #111111;
+  border-radius: 0px;
+  background-color: rgba(255, 255, 255, 0);
+  color: #111111;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ux-input {
+  padding: 10px;
+  border: 1px solid;
+  border-color: #111111;
+  border-radius: 0px;
+  background-color: rgba(255, 255, 255, 0);
+  color: #111111;
+  cursor: pointer;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.ux-input:focus-visible {
+    outline: none;
+}

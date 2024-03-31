@@ -1,0 +1,16 @@
+.takeover-dialog {
+  margin-top: 70px;
+  background-color: #f0f0f0;
+  border: 1px solid #1111;
+  max-width: 500px;
+  padding: 10px 20px 20px 20px;
+}
+
+.takeover-dialog h3 {
+  color: #ff00008c;
+}
+
+.takeover-dialog button {
+  width: 100px;
+  margin-top: 10px;
+}
