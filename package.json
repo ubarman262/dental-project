@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "rm -rf frontend/dist && rm -rf public",
     "build": "cd frontend && npm i && npm run build",
-    "postbuild": "cp frontend/dist public",
+    "postbuild": "cp -rf frontend/dist/ public",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js",
