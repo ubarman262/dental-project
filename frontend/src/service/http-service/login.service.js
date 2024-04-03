@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getData } from "../../utils/Cookies.utils";
 
-const BASE_URL = "http://localhost:3001/api";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 async function userLogin(data) {
   const payload = {
