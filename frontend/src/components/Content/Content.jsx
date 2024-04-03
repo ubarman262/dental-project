@@ -13,7 +13,7 @@ function Content(props) {
   const { isLoggedIn, login, logout } = useAuth();
 
   useEffect(() => {
-    Promise.all[getLoggedInState()];
+    getLoggedInState();
   }, [isLoggedIn]);
 
   const getLoggedInState = async () => {
@@ -33,7 +33,6 @@ function Content(props) {
         <div className="main-content-container">
           <div id="back-to-top-anchor"></div>
           {children}
-          {/* <Footer /> */}
         </div>
       );
     } else if (location.pathname === "/login") {
@@ -41,7 +40,6 @@ function Content(props) {
         <>
           <div id="back-to-top-anchor"></div>
           {children}
-          {/* <Footer /> */}
         </>
       );
     }
@@ -50,7 +48,7 @@ function Content(props) {
   return (
     <>
       {" "}
-      <ToastContainer limit={5} />
+      <ToastContainer limit={8} stacked />
       {handleAuthenticatedPageRender()}
     </>
   );

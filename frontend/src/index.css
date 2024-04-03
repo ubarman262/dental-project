@@ -170,7 +170,7 @@ body {
   --toastify-color-progress-warning: var(--toastify-color-warning);
   --toastify-color-progress-error: var(--toastify-color-error);
 
-  --toastify-color-progress-bgo: 0.2;
+  --toastify-color-progress-bgo: 0;
 
   --toastify-toast-bd-radius: 0px;
 }
@@ -178,4 +178,8 @@ body {
 .Toastify__toast {
   border: 1px solid;
   box-shadow: 1px 1px #000000c6;
+}
+
+.Toastify__progress-bar {
+  background: #00000000 !important;
 }

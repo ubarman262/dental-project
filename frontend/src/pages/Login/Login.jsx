@@ -34,7 +34,7 @@ export default function Login() {
         } else {
           toast.error(err.message, {
             toastId: err.message,
-            autoClose: false
+            autoClose: true
           });
         }
       });
