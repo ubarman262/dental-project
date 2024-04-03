@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "prebuild": "rm -rf frontend/dist && rm -rf public",
     "build": "cd frontend && npm i && npm run build",
-    "postbuild": "cp frontend public",
+    "postbuild": "cp frontend/dist public",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon app.js",
