@@ -6,7 +6,8 @@ import Takeover from "../../components/Dialogs/Takeover/Takeover";
 import { useAuth } from "../../context/AuthContext";
 import { userLogin } from "../../service/http-service/login.service";
 import { setData } from "../../utils/Cookies.utils";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import "./Login.css";
 
 export default function Login() {
@@ -30,6 +31,11 @@ export default function Login() {
         if (err.message === "Session already active") {
           setLoginData(data);
           setOpenTakeoverDialog(true);
+        } else {
+          toast.error(err.message, {
+            toastId: err.message,
+            autoClose: false
+          });
         }
       });
   };
@@ -48,8 +54,6 @@ export default function Login() {
         data={loginData}
         login={login}
       />
-      {/* <img className="login-top-circle" src={Circle} alt="circle" width={500} /> */}
-      {/* <img className="login-bottom-circle" src={Circle} alt="circle" width={300} /> */}
       <div className="login-form-container">
         <h1>DentalC</h1>
         <form onSubmit={handleSubmit(onSubmit)}>

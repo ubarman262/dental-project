@@ -1,11 +1,13 @@
 .MuiDrawer-paper {
   background-color: #f0f0f0 !important;
   color: #030303 !important;
+  border: none !important;
 }
 
 .MuiListItemButton-root {
   border: 1px solid;
   border-color: transparent;
+  transition: all 0.2s ease-out;
 }
 
 .MuiListItemButton-root:hover {
@@ -13,7 +15,8 @@
   border: 1px solid;
   border-color: #111111;
   border-radius: 0px;
-  transition: border 1s ease-out;
+  box-shadow: 1px 1px;
+  transition: all 0.2s ease-in;
 }
 
 .floating-button {

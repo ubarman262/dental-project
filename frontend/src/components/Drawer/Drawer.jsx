@@ -1,10 +1,7 @@
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import DateRangeIcon from "@mui/icons-material/DateRange";
-import GppGoodIcon from "@mui/icons-material/GppGood";
+// import DashboardIcon from "@mui/icons-material/Dashboard";
+// import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
-import PersonIcon from "@mui/icons-material/Person";
-import LogoutIcon from "@mui/icons-material/Logout";
+// import PersonIcon from "@mui/icons-material/Person";
 import {
   Divider,
   Drawer,
@@ -16,40 +13,78 @@ import {
   ListItemText,
 } from "@mui/material";
 import { useState } from "react";
+import CalenderIcon from "../../assets/calender.svg";
+import PersonsGroupIcon from "../../assets/person-2.svg";
+import PersonIcon from "../../assets/person.svg";
+import ToothIcon from "../../assets/tooth.svg";
+import DashboardIcon from "../../assets/graph.svg";
+import LogoutIcon from "../../assets/logout.svg";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./Drawer.css";
 
+const DRAWER_WIDTH = 241;
+
 const DRAWER_OPTIONS = [
   {
     key: "dashboard",
     displayText: "Dashboard",
-    icon: <DashboardIcon style={{ color: "#030303", fontSize: "2rem" }} />,
+    icon: (
+      <img
+        src={DashboardIcon}
+        width={26}
+        style={{ color: "#030303", fontSize: "2rem" }}
+      />
+    ),
     path: "/dashboard",
   },
   {
     key: "patientInfo",
     displayText: "Patient Info",
-    icon: <PersonIcon style={{ color: "#030303", fontSize: "2rem" }} />,
+    icon: (
+      <img
+        src={PersonIcon}
+        width={27}
+        style={{ color: "#030303", fontSize: "2rem" }}
+      />
+    ),
     path: "/patientInfo",
   },
   {
     key: "calender",
     displayText: "Calender",
-    icon: <CalendarMonthIcon style={{ color: "#030303", fontSize: "2rem" }} />,
+    icon: (
+      <img
+        src={CalenderIcon}
+        width={25}
+        style={{ color: "#030303", fontSize: "2rem" }}
+      />
+    ),
     path: "/calender",
   },
   {
     key: "appointments",
     displayText: "Appointments",
-    icon: <DateRangeIcon style={{ color: "#030303", fontSize: "2rem" }} />,
+    icon: (
+      <img
+        src={PersonsGroupIcon}
+        width={28}
+        style={{ color: "#030303", fontSize: "2rem" }}
+      />
+    ),
     path: "/appointments",
   },
   {
     key: "treatments",
     displayText: "Treatments",
-    icon: <GppGoodIcon style={{ color: "#030303", fontSize: "2rem" }} />,
+    icon: (
+      <img
+        src={ToothIcon}
+        width={25}
+        style={{ color: "#030303", fontSize: "2rem" }}
+      />
+    ),
     path: "/treatments",
   },
 ];
@@ -96,13 +131,15 @@ export default function DrawerPanel() {
       <h2>DentalC</h2>
       <Divider style={{ margin: "0px 20px" }} />
       <List>
-        {DRAWER_OPTIONS.map((item, index) => (
+        {DRAWER_OPTIONS.map((item) => (
           <ListItem key={item.key}>
             <ListItemButton
               onClick={() => handleItemClick(item)}
               style={{ ...isActive(item) }}
             >
-              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemIcon style={{ justifyContent: "center" }}>
+                {item.icon}
+              </ListItemIcon>
               <ListItemText
                 primary={
                   <span
@@ -127,17 +164,23 @@ export default function DrawerPanel() {
         ))}
       </List>
       <Divider style={{ margin: "0px 20px" }} />
-      <List>
-        {/* {["Logout", "Trash", "Spam"].map((text, index) => ( */}
+      <List style={{ position: "absolute", bottom: "10px" }}>
         <ListItem>
-          <ListItemButton onClick={() => logout()}>
-            <ListItemIcon>
-              <LogoutIcon />
+          <ListItemButton
+            onClick={() => logout()}
+            style={{ border: "none", boxShadow: "none" }}
+          >
+            <ListItemIcon style={{ justifyContent: "center" }}>
+              <img
+                className="ux-img-icon"
+                src={LogoutIcon}
+                width={25}
+                style={{ color: "#030303", fontSize: "2rem" }}
+              />
             </ListItemIcon>
             <ListItemText primary="Logout" />
           </ListItemButton>
         </ListItem>
-        {/* ))} */}
       </List>
     </div>
   );
@@ -167,7 +210,10 @@ export default function DrawerPanel() {
             }}
             sx={{
               display: { xs: "block", sm: "none" },
-              "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: DRAWER_WIDTH,
+              },
             }}
           >
             {drawer}
@@ -177,7 +223,10 @@ export default function DrawerPanel() {
             variant="permanent"
             sx={{
               display: { xs: "none", sm: "block" },
-              "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: DRAWER_WIDTH,
+              },
             }}
             open
           >

@@ -9,6 +9,13 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
+  transition: all 100ms ease-out;
+}
+
+.ux-button:hover {
+  transform: translateY(-2px);
+  transition: all 100ms ease-in;
+  box-shadow: 1px 1px;
 }
 
 .ux-input {
@@ -25,5 +32,5 @@
 }
 
 .ux-input:focus-visible {
-    outline: none;
+  outline: none;
 }

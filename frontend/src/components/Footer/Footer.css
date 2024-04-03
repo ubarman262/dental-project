@@ -1,0 +1,11 @@
+.ux-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+  background: #0000008a;
+  width: 100vw;
+  font-size: 12px;
+  text-align: center;
+  color: white;
+}

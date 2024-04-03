@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { checkToken } from "../../service/http-service/login.service";
+import { ToastContainer } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
+import { checkToken } from "../../service/http-service/login.service";
 
 /* eslint-disable react/prop-types */
 function Content(props) {
@@ -32,6 +33,7 @@ function Content(props) {
         <div className="main-content-container">
           <div id="back-to-top-anchor"></div>
           {children}
+          {/* <Footer /> */}
         </div>
       );
     } else if (location.pathname === "/login") {
@@ -39,12 +41,19 @@ function Content(props) {
         <>
           <div id="back-to-top-anchor"></div>
           {children}
+          {/* <Footer /> */}
         </>
       );
     }
   };
 
-  return <>{handleAuthenticatedPageRender()}</>;
+  return (
+    <>
+      {" "}
+      <ToastContainer limit={5} />
+      {handleAuthenticatedPageRender()}
+    </>
+  );
 }
 
 export default Content;

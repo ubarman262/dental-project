@@ -1,14 +1,13 @@
 import { StyledEngineProvider } from "@mui/material";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 import "./App.css";
 import Content from "./components/Content/Content";
-import Header from "./components/Header/Header";
-import { AuthProvider } from "./context/AuthContext";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import { RecoilRoot } from "recoil";
-import Dashboard from "./pages/Dashboard/Dashboard";
 import DrawerPanel from "./components/Drawer/Drawer";
+import { AuthProvider } from "./context/AuthContext";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Login from "./pages/Login/Login";
+import Footer from "./components/Footer/Footer";
 
 function App(props) {
   return (
@@ -16,15 +15,14 @@ function App(props) {
       <AuthProvider>
         <StyledEngineProvider injectFirst>
           <RecoilRoot>
-            {/* <Header /> */}
-            <DrawerPanel />
             <Content {...props}>
+              <DrawerPanel />
               <Routes>
                 <Route path="/dashboard" exact element={<Dashboard />} />
                 <Route path="/login" exact element={<Login />} />
-                {/* <Route path="/about" exact component={About} /> */}
               </Routes>
             </Content>
+            <Footer />
           </RecoilRoot>
         </StyledEngineProvider>
       </AuthProvider>
