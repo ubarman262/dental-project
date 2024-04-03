@@ -28,6 +28,11 @@ app.use(express.static(path.join(__dirname, "public")));
 // Routes
 app.use("/api", authRoutes);
 
+// Catch-all route for non-API routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

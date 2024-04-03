@@ -53,7 +53,12 @@ const logout = async (req, res) => {
 };
 
 const validity = async (req, res) => {
-  res.json({ valid: true });
+  try {
+    res.json({ valid: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
 
 const takeover = async (req, res) => {
@@ -75,8 +80,6 @@ const takeover = async (req, res) => {
     }
 
     const activeToken = await authService.checkActiveSession(username);
-
-    console.log(activeToken);
 
     if (activeToken) {
       const username = getUsernameFromToken(activeToken);
