@@ -48,21 +48,32 @@ Welcome to the Dental Clinic Management Web Portal project! This web portal is d
 4. Set up environment variables by creating a `.env` file in the root directory of the project. Here's an example `.env` file:
 
    ```
-   PORT=3000
-   JWT_SECRET=your_secret_key_here
-   FIREBASE_PROJECT_ID=your_firebase_project_id
-   FIREBASE_CLIENT_EMAIL=your_firebase_client_email
-   FIREBASE_PRIVATE_KEY=your_firebase_private_key
+   PORT=3001
+
+   ACCESS_TOKEN_SECRET=your_secret_key_here
+   REFRESH_TOKEN_SECRET=your_secret_key_here (should be different from access token secret)
+   ACCESS_TOKEN_EXPIRY=3600
+   REFRESH_TOKEN_EXPIRY=86400
+
    DATABASE_URL="postgres://username:password@host:port/defaultdb?sslmode=require"
+   REDIS_URL="rediss://username:password@host:port"
+
+   S3_ENDPOINT='https://<S3_BUCKET_ENDPOINT>'
+   S3_ACCESS_KEY_ID=<S3_ACCESS_KEY_ID>
+   S3_SECRET_ACCESS_KEY=<S3_SECRET_ACCESS_KEY>
+   S3_BASE_BUCKET=<BUCKET_NAME>
+
    ```
 
-   Replace `your_secret_key_here`, `your_firebase_project_id`, `your_firebase_client_email`, `your_firebase_private_key`, `username`, `password`, `host`, `port`, and `defaultdb` with your actual values.
+Replace `your_secret_key_here`, `your_firebase_project_id`, `your_firebase_client_email`, `your_firebase_private_key`, `username`, `password`, `host`, `port`, and `defaultdb` with your actual values.
 
 5. Start the development server:
 
-   ```
-   npm run dev
-   ```
+```
+
+npm run dev
+
+```
 
 6. Open your web browser and navigate to `http://localhost:3000` to access the web portal.
 
@@ -81,3 +92,7 @@ Special thanks to all contributors who have helped to improve this project.
 ---
 
 Feel free to customize this README file further with additional information specific to your project, such as usage instructions, deployment instructions, project structure, etc.
+
+```
+
+```

@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const cacheService = require("./cacheService");
+
 function generateUserToken(existingUser) {
   return jwt.sign(
     {
@@ -7,8 +8,20 @@ function generateUserToken(existingUser) {
       username: existingUser.username,
       role: existingUser.role.role,
     },
-    process.env.JWT_SECRET,
-    { expiresIn: "1h" }
+    process.env.ACCESS_TOKEN_SECRET,
+    { expiresIn: parseInt(process.env.ACCESS_TOKEN_EXPIRY), issuer: "ujjwalbarman.in", audience: existingUser.id }
+  );
+}
+
+function generateRefreshToken(existingUser) {
+  return jwt.sign(
+    {
+      id: existingUser.id,
+      username: existingUser.username,
+      role: existingUser.role.role,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    { expiresIn: parseInt(process.env.REFRESH_TOKEN_EXPIRY), issuer: "ujjwalbarman.in", audience: existingUser.id }
   );
 }
 
@@ -17,8 +30,19 @@ async function checkActiveSession(username) {
   return activeSession;
 }
 
+async function verifyRefreshToken(refreshToken) {
+  // Verify and decode the token
+  return jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, decoded) => {
+    if (err) {
+      throw new Error("Invalid refresh token");
+    }
+    return decoded;
+  });
+}
+
 module.exports = {
   generateUserToken,
-  checkActiveSession
+  checkActiveSession,
+  generateRefreshToken,
+  verifyRefreshToken,
 };
-

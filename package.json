@@ -13,14 +13,17 @@
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:generate": "prisma generate",
     "prisma:db:push": "prisma db push",
-    "prisma:db:seed": "node prisma/seed/seed.js"
+    "prisma:db:seed": "node prisma/seed/seed.js",
+    "docker:build": "docker build -t dentalproject:latest . && docker tag dentalproject:latest dentalproject:latest && docker push dentalproject:latest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.0",
-    "prisma": "^5.10.2"
+    "prisma": "^5.10.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "dependencies": {
     "@prisma/client": "^5.10.2",

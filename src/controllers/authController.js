@@ -30,10 +30,51 @@ const login = async (req, res) => {
     }
 
     const token = authService.generateUserToken(existingUser);
+    const refreshToken = authService.generateRefreshToken(existingUser);
 
-    await cacheService.setData(`${username}-token`, token, 3600);
+    await cacheService.setData(
+      `${username}-token`,
+      token,
+      process.env.ACCESS_TOKEN_EXPIRY
+    );
+    await cacheService.setData(
+      `${username}-rtoken`,
+      refreshToken,
+      process.env.REFRESH_TOKEN_EXPIRY
+    );
 
-    res.json({ token });
+    res.json({ token, refreshToken });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const refreshToken = async (req, res) => {
+  try {
+    const refreshToken = req.headers.authorization;
+
+    if (!refreshToken) {
+      return res.status(401).json({ message: "Invalid refresh token" });
+    }
+
+    const user = await authService.verifyRefreshToken(refreshToken);
+
+    const newToken = authService.generateUserToken(user);
+    const newRefreshToken = authService.generateRefreshToken(user);
+
+    await cacheService.setData(
+      `${user.username}-token`,
+      newToken,
+      process.env.ACCESS_TOKEN_EXPIRY
+    );
+    await cacheService.setData(
+      `${user.username}-rtoken`,
+      newRefreshToken,
+      process.env.REFRESH_TOKEN_EXPIRY
+    );
+
+    res.json({ token: newToken, refreshToken: newRefreshToken });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
@@ -46,6 +87,7 @@ const logout = async (req, res) => {
   const username = getUsernameFromToken(token);
 
   cacheService.removeData(`${username}-token`);
+  cacheService.removeData(`${username}-rtoken`);
 
   addToBlacklist(token);
 
@@ -82,16 +124,24 @@ const takeover = async (req, res) => {
     const activeToken = await authService.checkActiveSession(username);
 
     if (activeToken) {
-      const username = getUsernameFromToken(activeToken);
-
-      cacheService.removeData(`${username}-token`);
-
       addToBlacklist(activeToken);
     }
 
     const token = authService.generateUserToken(existingUser);
+    const refreshToken = authService.generateRefreshToken(existingUser);
 
-    await cacheService.setData(`${username}-token`, token, 3600);
+    await cacheService.setData(
+      `${username}-token`,
+      token,
+      process.env.ACCESS_TOKEN_EXPIRY
+    );
+    await cacheService.setData(
+      `${username}-rtoken`,
+      refreshToken,
+      process.env.REFRESH_TOKEN_EXPIRY
+    );
+
+    res.json({ token, refreshToken });
 
     res.json({ token });
   } catch (error) {
@@ -105,4 +155,5 @@ module.exports = {
   logout,
   validity,
   takeover,
+  refreshToken,
 };

@@ -22,7 +22,7 @@ const uploadSingle = async (req, res) => {
   try {
     // Upload the file to the S3 bucket
     const result = await storeService.addObjectToBucketWithSubdirectory(
-      process.env.BASE_BUCKET,
+      process.env.S3_BASE_BUCKET,
       patient_id,
       `${name}-${nanoid()}${ext}`, // Use the original filename as the object key
       buffer // Use the file buffer as the object content
@@ -43,7 +43,7 @@ const allObjects = async (req, res) => {
   }
 
   try {
-    const result = await storeService.getBucketContent(process.env.BASE_BUCKET);
+    const result = await storeService.getBucketContent(process.env.S3_BASE_BUCKET);
     res.json({ message: "Files", result });
   } catch (error) {
     console.error(error);
@@ -64,7 +64,7 @@ const download = async (req, res) => {
 
   try {
     const fileStream = await storeService.getItemFromBucket(
-      process.env.BASE_BUCKET,
+      process.env.S3_BASE_BUCKET,
       object_key
     );
 
