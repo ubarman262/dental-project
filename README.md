@@ -1,7 +1,3 @@
-Sure, here's the updated README file with the information from your `.env` file and the link to your GitHub repository:
-
----
-
 # Dental Clinic Management Web Portal
 
 Welcome to the Dental Clinic Management Web Portal project! This web portal is designed to help dental clinics manage their operations efficiently, including patient appointments, treatment records, staff management, and more.
