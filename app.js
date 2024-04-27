@@ -8,6 +8,8 @@ const dotenv = require("dotenv");
 const path = require("path");
 const xss = require("./src/middleware/xssMiddleware");
 const authRoutes = require("./src/routes");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./docs/swagger.json");
 
 dotenv.config();
 
@@ -25,6 +27,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, "public")));
 
+// Api Docs
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // Routes
 app.use("/api", authRoutes);
 
@@ -40,7 +45,7 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Running on http://localhost:${PORT}`);
 });
