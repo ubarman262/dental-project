@@ -9,7 +9,7 @@ function generateUserToken(existingUser) {
       role: existingUser.role.role,
     },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: parseInt(process.env.ACCESS_TOKEN_EXPIRY), issuer: "ujjwalbarman.in", audience: existingUser.id }
+    { expiresIn: parseInt(process.env.ACCESS_TOKEN_EXPIRY), issuer: "ujjwalbarman.com", audience: existingUser.id }
   );
 }
 
@@ -21,7 +21,7 @@ function generateRefreshToken(existingUser) {
       role: existingUser.role.role,
     },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: parseInt(process.env.REFRESH_TOKEN_EXPIRY), issuer: "ujjwalbarman.in", audience: existingUser.id }
+    { expiresIn: parseInt(process.env.REFRESH_TOKEN_EXPIRY), issuer: "ujjwalbarman.com", audience: existingUser.id }
   );
 }
 
